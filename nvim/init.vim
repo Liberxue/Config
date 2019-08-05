@@ -6,7 +6,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-"let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/neocomplcache'        " Depenency for Shougo/neosnippet
 Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdown
 Plug 'tpope/vim-rhubarb'           " Depenency for tpope/fugitive
@@ -33,14 +32,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
-Plug 'plasticboy/vim-markdown'                 " Markdown syntax highlighting
 Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
 Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'ianding1/leetcode.vim'                   " Leetcode
-
-
 
 " Vim only plugins
 " Language support
@@ -49,6 +45,7 @@ Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'fatih/vim-go'                            " Go support
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
@@ -400,7 +397,7 @@ let g:tagbar_type_go = {
 let g:instant_markdown_autostart = 1
 let g:instant_markdown_mathjax = 1
 let g:instant_markdown_port = 8888
-let g:instant_markdown_autoscroll = 1
+let g:instant_markdown_autoscroll = 0
 "----------------------------------------------
 " Plugin: rbgrouleff/bclose.vim
 "----------------------------------------------
@@ -500,7 +497,38 @@ let g:multi_cursor_skip_key='<C-b>'
 let g:deoplete#sources#go#pointer = 1
 
 " Enable autocomplete of unimported packages
-let g:deoplete#sources#go#unimported_packages = 0
+let g:deoplete#sources#go#unimported_packages = 1
+
+" When enabled, deoplete-go can complete standard library packages that are not explicitely imported yet.
+let g:deoplete#sources#go#fallback_to_source=1
+
+"let g:deoplete#sources#go#builtin_objects
+
+set completeopt+=noinsert
+" deoplete.nvim recommend
+set completeopt+=noselect
+" Skip the check of neovim module
+let g:python3_host_skip_check = 1
+
+" Run deoplete.nvim automatically
+let g:deoplete#enable_at_startup = 1
+" deoplete-go settings
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+
+" Available values are [package, func, type, var, const]. If you did not include any value, it will always be hidden in the completion list.
+
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+"
+let g:deoplete#sources#go#source_importer = 1
+
+" Automatically insert dot after package name
+let g:deoplete#sources#go#package_dot=1
+
+" cgo
+let g:deoplete#sources#go#cgo	=1
+
+" Automatically set GOOS environment variable when calling gocode
+let g:deoplete#sources#go#goos=1
 
 "----------------------------------------------
 " Language: Golang
@@ -682,23 +710,3 @@ let $RUST_SRC_PATH="<path-to-rust-srcdir>/src/"
  nnoremap <leader>lt :LeetCodeTest<cr>
  nnoremap <leader>ls :LeetCodeSubmit<cr>
  nnoremap <leader>li :LeetCodeSignIn<cr>
-
-" "----------------------------------------------
-" "  NeoComplete
-" "----------------------------------------------
-" neocomplete like
-set completeopt+=noinsert
-" deoplete.nvim recommend
-set completeopt+=noselect
-" Skip the check of neovim module
-let g:python3_host_skip_check = 1
-
-" "----------------------------------------------
-" " Deoplete
-" "----------------------------------------------
-" Run deoplete.nvim automatically
-let g:deoplete#enable_at_startup = 1
-" deoplete-go settings
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-let g:deoplete#sources#go#source_importer = 1
