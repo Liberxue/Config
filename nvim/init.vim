@@ -30,15 +30,8 @@ Plug 'sebdah/vim-delve'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vimwiki/vimwiki'
-Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
-Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
-Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
-Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
-Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'ianding1/leetcode.vim'                   " Leetcode
 
-" Vim only plugins
 " Language support
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
@@ -47,8 +40,15 @@ Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim'                      " Rust support
+Plug 'racer-rust/vim-racer'                    " Rust plug support
+Plug 'vimwiki/vimwiki'
+Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
+Plug 'mxw/vim-jsx'                             " react support
+Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
+Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
+Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
+Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -676,6 +676,9 @@ au FileType html set tabstop=2
  au FileType javascript set shiftwidth=2
  au FileType javascript set softtabstop=2
  au FileType javascript set tabstop=2
+ " vim-jsx
+ let g:jsx_ext_required = 1
+ let g:jsx_pragma_required = 1
 
 " "----------------------------------------------
 " " Language: JSON
