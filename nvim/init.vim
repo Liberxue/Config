@@ -38,7 +38,7 @@ Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'fatih/vim-go'                            " Go support
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
-Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+"Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'rust-lang/rust.vim'                      " Rust support
 Plug 'racer-rust/vim-racer'                    " Rust plug support
