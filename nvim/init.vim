@@ -45,6 +45,9 @@ Plug 'racer-rust/vim-racer'                    " Rust plug support
 Plug 'vimwiki/vimwiki'
 Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
 Plug 'mxw/vim-jsx'                             " react support
+Plug 'moll/vim-node'                            "node support
+Plug 'tpope/vim-jdaddy' "Json text objects
+Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
 Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
 Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
