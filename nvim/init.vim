@@ -35,7 +35,8 @@ Plug 'ianding1/leetcode.vim'                   " Leetcode
 " Language support
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'fatih/vim-go'                            " Go support
+" Go support
+Plug 'fatih/vim-go', { 'do': ':silent :GoUpdateBinaries' }
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
@@ -52,6 +53,9 @@ Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighti
 Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
+Plug 'scrooloose/syntastic'                    " jsx eslintrc
+" dash doc
+Plug 'rizzatti/dash.vim'
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -709,10 +713,37 @@ let $RUST_SRC_PATH="<path-to-rust-srcdir>/src/"
 " "----------------------------------------------
 " " Language: LeetCode
 " "----------------------------------------------
+" 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'
  let g:leetcode_solution_filetype="golang"
- let g:leetcode_username="liberxue"
- let g:leetcode_password="cyflbx1314@#$"
+ let g:leetcode_username=$LEETCODE_USER
+ let g:leetcode_password=$LEETCODE_PASSWORD
  nnoremap <leader>ll :LeetCodeList<cr>
  nnoremap <leader>lt :LeetCodeTest<cr>
  nnoremap <leader>ls :LeetCodeSubmit<cr>
  nnoremap <leader>li :LeetCodeSignIn<cr>
+" "----------------------------------------------
+" " Syntastic
+" "----------------------------------------------
+ let g:syntastic_javascript_checkers = ['eslint']
+ set statusline+=%#warningmsg#
+ set statusline+=%{SyntasticStatuslineFlag()}
+ set statusline+=%*
+ let g:syntastic_always_populate_loc_list = 1
+ let g:syntastic_auto_loc_list = 1
+ let g:syntastic_check_on_open = 1
+ let g:syntastic_quiet_messages = { "type": "style" }
+ let g:syntastic_enable_perl_checker = 1
+" "----------------------------------------------
+" Dash
+   let g:dash_map = {
+        \ 'java' : ['android', 'java'],
+        \ 'go': 'go'
+        \ }
+    nmap <silent> <LocalLeader>d <Plug>DashSearch
+    nmap <silent> <LocalLeader>D <Plug>DashGlobalSearch
+
+" " vim-autoformat
+" "----------------------------------------------
+ let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+
+
