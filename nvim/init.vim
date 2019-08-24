@@ -31,7 +31,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ianding1/leetcode.vim'                   " Leetcode
-
+Plug 'dense-analysis/ale'
 " Language support
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
@@ -733,11 +733,13 @@ let $RUST_SRC_PATH="<path-to-rust-srcdir>/src/"
  let g:syntastic_check_on_open = 1
  let g:syntastic_quiet_messages = { "type": "style" }
  let g:syntastic_enable_perl_checker = 1
+"----------------------------------------------
+" " Dash
 " "----------------------------------------------
-" Dash
    let g:dash_map = {
         \ 'java' : ['android', 'java'],
-        \ 'go': 'go'
+        \ 'go': 'go',
+        \ 'javascript':'js'
         \ }
     nmap <silent> <LocalLeader>d <Plug>DashSearch
     nmap <silent> <LocalLeader>D <Plug>DashGlobalSearch
@@ -745,5 +747,14 @@ let $RUST_SRC_PATH="<path-to-rust-srcdir>/src/"
 " " vim-autoformat
 " "----------------------------------------------
  let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
-
-
+" "----------------------------------------------
+" " Ale and Revive
+" "----------------------------------------------
+call ale#linter#Define('go', {
+\   'name': 'revive',
+\   'output_stream': 'both',
+\   'executable': 'revive',
+\   'read_buffer': 0,
+\   'command': 'revive %t',
+\   'callback': 'ale#handlers#unix#HandleAsWarning',
+\})
