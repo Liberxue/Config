@@ -32,12 +32,22 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ianding1/leetcode.vim'                   " Leetcode
 Plug 'dense-analysis/ale'
+
+
+
+if has('win32') || has('win64')
+  Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
+else
+  Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+endif
 " Language support
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 " Go support
 Plug 'fatih/vim-go', { 'do': ':silent :GoUpdateBinaries' }
-Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
+Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -54,9 +64,11 @@ Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'scrooloose/syntastic'                    " jsx eslintrc
+Plug 'vim-scripts/Conque-GDB'
+
 " dash doc
 Plug 'rizzatti/dash.vim'
-
+" Code review
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
@@ -709,7 +721,27 @@ set hidden
 let g:racer_cmd = "<path-to-racer>/target/release/racer"
 "" 这里填写的就是我们在1.2.1中让你记住的目录
 let $RUST_SRC_PATH="<path-to-rust-srcdir>/src/"
+" a basic set up for LanguageClient-Neovim
 
+" << LSP >> {{{
+
+let g:LanguageClient_autoStart = 0
+nnoremap <leader>lcs :LanguageClientStart<CR>
+
+" if you want it to turn on automatically
+" let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'go': ['go-langserver'] }
+
+noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
+noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
+noremap <silent> R :call LanguageClient_textDocument_rename()<CR>
+noremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
+" }}}
 " "----------------------------------------------
 " " Language: LeetCode
 " "----------------------------------------------
@@ -758,3 +790,42 @@ call ale#linter#Define('go', {
 \   'command': 'revive %t',
 \   'callback': 'ale#handlers#unix#HandleAsWarning',
 \})
+
+
+" " deoplete-tabnine
+call deoplete#custom#var('tabnine', {
+\ 'line_limit': 500,
+\ 'max_num_results': 20,
+\ })
+
+
+"" terraform
+" Syntastic Config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" (Optional)Remove Info(Preview) window
+set completeopt-=preview
+
+" (Optional)Hide Info(Preview) window after completions
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" (Optional) Enable terraform plan to be include in filter
+let g:syntastic_terraform_tffilter_plan = 1
+
+" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+
+" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
+
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
+let g:deoplete#enable_at_startup = 1
