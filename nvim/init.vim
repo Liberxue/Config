@@ -1,20 +1,13 @@
 call plug#begin()
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'Shougo/neocomplcache'        " Depenency for Shougo/neosnippet
+Plug 'itchyny/lightline.vim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdown
 Plug 'tpope/vim-rhubarb'           " Depenency for tpope/fugitive
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'  " Default snippets for many languages
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'          " CtrlP is installed to support tag finding in vim-go
 Plug 'editorconfig/editorconfig-vim'
-Plug 'itchyny/calendar.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
@@ -25,32 +18,21 @@ Plug 'neomake/neomake'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/'
 Plug 'sebdah/vim-delve'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'ianding1/leetcode.vim'                   " Leetcode
-Plug 'dense-analysis/ale'
 
 " Auto Complete
 " Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Or latest tag
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-" Or build from source code by use yarn: https://yarnpkg.com
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
 
 " Language support
-Plug 'Shougo/deoplete.nvim'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-" Go support
-Plug 'fatih/vim-go', { 'do': ':silent :GoUpdateBinaries' }
-Plug 'hashivim/vim-terraform'
+" o support
+Plug 'fatih/vim-go', { 'do': ':silent :oUpdateBinaries' }
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'rust-lang/rust.vim'                      " Rust support
 Plug 'racer-rust/vim-racer'                    " Rust plug support
@@ -61,11 +43,9 @@ Plug 'moll/vim-node'                            "node support
 Plug 'tpope/vim-jdaddy' "Json text objects
 Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
 Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
-Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'scrooloose/syntastic'                    " jsx eslintrc
-Plug 'vim-scripts/Conque-GDB'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 " Colorschemes
@@ -76,15 +56,14 @@ Plug 'kaicataldo/material.vim'
 Plug 'rakr/vim-one'
 call plug#end()
 
-
 "----------------------------------------------
-" General settings
+" eneral settings
 "----------------------------------------------"
-" 常规模式下用空格键来开关光标行所在折叠（注：zR 展开所有折叠，zM 关闭所有折叠）
+" Â∏∏ËßÑÊ®°Âºè‰∏ãÁî®Á©∫Ê†ºÈîÆÊù•ÂºÄÂÖ≥ÂÖâÊ†áË°åÊâÄÂú®ÊäòÂè†ÔºàÊ≥®ÔºözR Â±ïÂºÄÊâÄÊúâÊäòÂè†ÔºåzM ÂÖ≥Èó≠ÊâÄÊúâÊäòÂè†Ôºâ
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" 常规模式下输入 cS 清除行尾空格
+" Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cS Ê∏ÖÈô§Ë°åÂ∞æÁ©∫Ê†º
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
-" " 常规模式下输入 cM 清除行尾 ^M 符号
+" " Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cM Ê∏ÖÈô§Ë°åÂ∞æ ^M Á¨¶Âè∑
 nmap cM :%s/\r$//g<CR>:noh<CR>
 
 set autoindent                    " take indent for new line from previous line
@@ -99,7 +78,7 @@ set cursorline                    " highlight the current line for the cursor
 set encoding=utf-8
 set expandtab                     " expands tabs to spaces
 set list                          " show trailing whitespace
-set listchars=tab:\|\ ,trail:▫
+set listchars=tab:\|\ ,trail:‚ñ´
 set nospell                       " disable spelling
 set noswapfile                    " disable swapfile usage
 set nowrap
@@ -120,7 +99,7 @@ set shortmess+=c                  " don't give |ins-completion-menu| messages.
 set signcolumn=yes                " always show signcolumns
 " Enable mouse if possible
 if has('mouse')
-    set mouse=a
+set mouse=a
 endif
 
 " Allow vim to set a custom font or color for a word
@@ -142,15 +121,15 @@ nnoremap <space> zz
 " Colors
 "----------------------------------------------
 if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"For Neovim 0.1.3 and 0.1.4 < [https://github.com/neovim/neovim/pull/2198](https://github.com/neovim/neovim/pull/2198) >
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < [https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162](https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162) >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < [https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd](https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd) >
+" < [https://github.com/neovim/neovim/wiki/Following-HEAD#20160511](https://github.com/neovim/neovim/wiki/Following-HEAD#20160511) >
 if (has("termguicolors"))
-  set termguicolors
+set termguicolors
 endif
 
 set background=dark
@@ -161,17 +140,16 @@ let g:material_theme_style ='dark'
 " Ayu colorscheme settings
 let ayucolor = 'dark'
 
-
 let g:lightline = {
-      \ 'colorscheme': 'material_vim',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
+\ 'colorscheme': 'material_vim',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component_function': {
+\   'gitbranch': 'fugitive#head'
+\ },
+\ }
 
 " One colorscheme settings
 let g:one_allow_italics = 1
@@ -182,7 +160,7 @@ colorscheme one
 " read. The default PaperColor is dark green backgroun with black foreground.
 "
 " Reference:
-" - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" - [http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim](http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim)
 highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
 
 " Toggle background with <leader>bg
@@ -195,7 +173,7 @@ set incsearch                     " move to match as you type the search query
 set hlsearch                      " disable search result highlighting
 
 if has('nvim')
-    set inccommand=split          " enables interactive search and replace
+set inccommand=split          " enables interactive search and replace
 endif
 
 " Clear search highlights
@@ -209,7 +187,7 @@ nnoremap N Nzzzv
 "----------------------------------------------
 " Navigation
 "----------------------------------------------
-" Disable arrow keys
+"Disable arrow keys
 "noremap <Up> <NOP>
 "noremap <Down> <NOP>
 "noremap <Left> <NOP>
@@ -221,8 +199,8 @@ nnoremap <S-Right> :bnext<cr>
 
 " ... but skip the quickfix when navigating
 augroup qf
-    autocmd!
-    autocmd FileType qf set nobuflisted
+autocmd!
+autocmd FileType qf set nobuflisted
 augroup END
 
 " Fix some common typos
@@ -252,7 +230,7 @@ nnoremap <leader>h :split<cr>
 nnoremap <leader>q :close<cr>
 
 "----------------------------------------------
-" Plugin: MattesGroeger/vim-bookmarks
+" Plugin: Mattesroeger/vim-bookmarks
 "----------------------------------------------
 " Auto save bookmarks
 let g:bookmark_auto_save = 1
@@ -266,49 +244,29 @@ let g:bookmark_no_default_key_mappings = 1
 " Configure key mappings
 " This part also fixes conflicts with NERDTree
 function! BookmarkMapKeys()
-    nmap Mm :BookmarkToggle<cr>
-    nmap Mi :BookmarkAnnotate<cr>
-    nmap Mn :BookmarkNext<cr>
-    nmap Mp :BookmarkPrev<cr>
-    nmap Ma :BookmarkShowAll<cr>
-    nmap Mc :BookmarkClear<cr>
-    nmap Mx :BookmarkClearAll<cr>
-    nmap Mkk :BookmarkMoveUp
-    nmap Mjj :BookmarkMoveDown
+nmap Mm :BookmarkToggle<cr>
+nmap Mi :BookmarkAnnotate<cr>
+nmap Mn :BookmarkNext<cr>
+nmap Mp :BookmarkPrev<cr>
+nmap Ma :BookmarkShowAll<cr>
+nmap Mc :BookmarkClear<cr>
+nmap Mx :BookmarkClearAll<cr>
+nmap Mkk :BookmarkMoveUp
+nmap Mjj :BookmarkMoveDown
 endfunction
 function! BookmarkUnmapKeys()
-    unmap Mm
-    unmap Mi
-    unmap Mn
-    unmap Mp
-    unmap Ma
-    unmap Mc
-    unmap Mx
-    unmap Mkk
-    unmap Mjj
+unmap Mm
+unmap Mi
+unmap Mn
+unmap Mp
+unmap Ma
+unmap Mc
+unmap Mx
+unmap Mkk
+unmap Mjj
 endfunction
 autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
-
-"----------------------------------------------
-" Plugin: Shougo/deoplete.nvim
-"----------------------------------------------
-if has('nvim')
-    " Enable deoplete on startup
-    let g:deoplete#enable_at_startup = 1
-endif
-
-" Disable deoplete when in multi cursor mode
-"function! Multiple_cursors_before()
-    "let b:deoplete_disable_auto_complete = 1
-"endfunction
-
-"function! Multiple_cursors_after()
-    "let b:deoplete_disable_auto_complete = 0
-call deoplete#custom#option({
-\ 'auto_complete_delay': 0,
-\ 'auto_refresh_delay': 10,
-\})
 
 "----------------------------------------------
 " Show status bar by default.
@@ -319,10 +277,10 @@ set laststatus=2
 "----------------------------------------------
 " tmux will send xterm-style keys when its xterm-keys option is on.
 if &term =~ '^screen'
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
+execute "set <xUp>=\e[1;*A"
+execute "set <xDown>=\e[1;*B"
+execute "set <xRight>=\e[1;*C"
+execute "set <xLeft>=\e[1;*D"
 endif
 
 " Tmux vim integration
@@ -340,7 +298,7 @@ nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 " Plugin: 'ctrlpvim/ctrlp.vim'
 "----------------------------------------------
 " Note: We are not using CtrlP much in this configuration. But vim-go depend on
-" it to run GoDecls(Dir).
+" it to run oDecls(Dir).
 
 " Disable the CtrlP mapping, since we want to use FZF instead for <c-p>.
 let g:ctrlp_map = ''
@@ -355,10 +313,10 @@ nmap <leader><leader>w <Plug>(easymotion-overwin-w)
 "----------------------------------------------
 " Plugin: 'itchyny/calendar.vim'
 "----------------------------------------------
-" Enable Google Calendar integration.
+" Enable oogle Calendar integration.
 let g:calendar_google_calendar = 1
 
-" Enable Google Tasks integration.
+" Enable oogle Tasks integration.
 let g:calendar_google_task = 1
 
 " Other options
@@ -379,34 +337,34 @@ nnoremap <c-p> :FZF<cr>
 " Add shortcut for toggling the tag bar
 nnoremap <F3> :TagbarToggle<cr>
 
-" Language: Go
-" Tagbar configuration for Golang
+" Language: o
+" Tagbar configuration for olang
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
+\ 'ctagstype' : 'go',
+\ 'kinds'     : [
+\ 'p:package',
+\ 'i:imports:1',
+\ 'c:constants',
+\ 'v:variables',
+\ 't:types',
+\ 'n:interfaces',
+\ 'w:fields',
+\ 'e:embedded',
+\ 'm:methods',
+\ 'r:constructor',
+\ 'f:functions'
+\ ],
+\ 'sro' : '.',
+\ 'kind2scope' : {
+\ 't' : 'ctype',
+\ 'n' : 'ntype'
+\ },
+\ 'scope2kind' : {
+\ 'ctype' : 't',
+\ 'ntype' : 'n'
+\ },
+\ 'ctagsbin'  : 'gotags',
+\ 'ctagsargs' : '-sort -silent'
 \ }
 
 "----------------------------------------------
@@ -433,25 +391,25 @@ nnoremap <leader>a :Ack!<space>
 " Plugin: neomake/neomake
 "----------------------------------------------
 " Configure signs.
-let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+let g:neomake_error_sign   = {'text': '‚úñ', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '‚àÜ', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '‚û§', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign    = {'text': '‚Ñπ', 'texthl': 'NeomakeInfoSign'}
 
 "----------------------------------------------
-" Plugin: scrooloose/nerdtree
+" Plugin: scrooloose/
 "----------------------------------------------
 nnoremap <leader>d :NERDTreeToggle<cr>
 nnoremap <F2> :NERDTreeToggle<cr>
 
 " Files to ignore
 let NERDTreeIgnore = [
-    \ '\~$',
-    \ '\.pyc$',
-    \ '^\.DS_Store$',
-    \ '^node_modules$',
-    \ '^.ropeproject$',
-    \ '^__pycache__$'
+\ '\~$',
+\ '\.pyc$',
+\ '^\.DS_Store$',
+\ '^node_modules$',
+\ '^.ropeproject$',
+\ '^**pycache**$'
 \]
 
 " Close vim if NERDTree is the only opened window.
@@ -478,7 +436,7 @@ let g:delve_backend = "native"
 " Below you can disable default snippets for specific languages. If you set the
 " language to _ it sets the default for all languages.
 let g:neosnippet#disable_runtime_snippets = {
-    \ 'go': 1
+\ 'go': 1
 \}
 
 " Keybindings
@@ -494,9 +452,9 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 "----------------------------------------------
 " Path to wiki
 let g:vimwiki_list = [{
-        \ 'path': '~/Dropbox/vimwiki',
-        \ 'syntax': 'markdown',
-        \ 'ext': '.vimwiki.markdown'}]
+\ 'path': '~/Dropbox/vimwiki',
+\ 'syntax': 'markdown',
+\ 'ext': '.vimwiki.markdown'}]
 
 au FileType vimwiki set expandtab
 au FileType vimwiki set shiftwidth=2
@@ -532,7 +490,7 @@ let g:python3_host_skip_check = 1
 " Run deoplete.nvim automatically
 let g:deoplete#enable_at_startup = 1
 " deoplete-go settings
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = $OPATH.'/bin/gocode'
 
 " Available values are [package, func, type, var, const]. If you did not include any value, it will always be hidden in the completion list.
 
@@ -546,11 +504,11 @@ let g:deoplete#sources#go#package_dot=1
 " cgo
 let g:deoplete#sources#go#cgo	=1
 
-" Automatically set GOOS environment variable when calling gocode
+" Automatically set OOS environment variable when calling gocode
 let g:deoplete#sources#go#goos=1
 
 "----------------------------------------------
-" Language: Golang
+" Language: olang
 "----------------------------------------------
 au FileType go set noexpandtab
 au FileType go set shiftwidth=4
@@ -558,14 +516,14 @@ au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
 " Mappings
-au FileType go nmap <F8> :GoMetaLinter<cr>
-au FileType go nmap <F9> :GoCoverageToggle -short<cr>
-au FileType go nmap <F10> :GoTest -short<cr>
+au FileType go nmap <F8> :oMetaLinter<cr>
+au FileType go nmap <F9> :oCoverageToggle -short<cr>
+au FileType go nmap <F10> :oTest -short<cr>
 au FileType go nmap <F12> <Plug>(go-def)
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
 au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
-au FileType go nmap <leader>gt :GoDeclsDir<cr>
+au FileType go nmap <leader>gt :oDeclsDir<cr>
 au FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
 au FileType go nmap <leader>gd <Plug>(go-def)
 au FileType go nmap <leader>gdv <Plug>(go-def-vertical)
@@ -589,7 +547,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 
-" Show the progress when running :GoCoverage
+" Show the progress when running :oCoverage
 let g:go_echo_command_info = 1
 
 " Show type information
@@ -600,7 +558,7 @@ let g:go_auto_sameids = 1
 " Fix for location list when vim-go is used together with Syntastic
 let g:go_list_type = "quickfix"
 
-" Add the failing test name to the output of :GoTest
+" Add the failing test name to the output of :oTest
 let g:go_test_show_name = 1
 
 let g:go_gocode_propose_source=1
@@ -609,47 +567,47 @@ let g:go_gocode_propose_source=1
 let g:go_metalinter_command = ""
 let g:go_metalinter_deadline = "5s"
 let g:go_metalinter_enabled = [
-    \ 'deadcode',
-    \ 'gas',
-    \ 'goconst',
-    \ 'gocyclo',
-    \ 'golint',
-    \ 'gosimple',
-    \ 'ineffassign',
-    \ 'vet',
-    \ 'vetshadow'
+\ 'deadcode',
+\ 'gas',
+\ 'goconst',
+\ 'gocyclo',
+\ 'golint',
+\ 'gosimple',
+\ 'ineffassign',
+\ 'vet',
+\ 'vetshadow'
 \]
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 " Set whether the JSON tags should be snakecase or camelcase.
 let g:go_addtags_transform = "snakecase"
 
-" neomake configuration for Go.
+" neomake configuration for o.
 let g:neomake_go_enabled_makers = [ 'go', 'gometalinter' ]
 let g:neomake_go_gometalinter_maker = {
-  \ 'args': [
-  \   '--tests',
-  \   '--enable-gc',
-  \   '--concurrency=3',
-  \   '--fast',
-  \   '-D', 'aligncheck',
-  \   '-D', 'dupl',
-  \   '-D', 'gocyclo',
-  \   '-D', 'gotype',
-  \   '-E', 'misspell',
-  \   '-E', 'unused',
-  \   '%:p:h',
-  \ ],
-  \ 'append_file': 0,
-  \ 'errorformat':
-  \   '%E%f:%l:%c:%trror: %m,' .
-  \   '%W%f:%l:%c:%tarning: %m,' .
-  \   '%E%f:%l::%trror: %m,' .
-  \   '%W%f:%l::%tarning: %m'
-  \ }
+\ 'args': [
+\   '--tests',
+\   '--enable-gc',
+\   '--concurrency=3',
+\   '--fast',
+\   '-D', 'aligncheck',
+\   '-D', 'dupl',
+\   '-D', 'gocyclo',
+\   '-D', 'gotype',
+\   '-E', 'misspell',
+\   '-E', 'unused',
+\   '%:p:h',
+\ ],
+\ 'append_file': 0,
+\ 'errorformat':
+\   '%E%f:%l:%c:%trror: %m,' .
+\   '%W%f:%l:%c:%tarning: %m,' .
+\   '%E%f:%l::%trror: %m,' .
+\   '%W%f:%l::%tarning: %m'
+\ }
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'" Enable integration with airline.
+let g:ale_sign_error = '‚§´'
+let g:ale_sign_warning = '‚ö†'" Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 "----------------------------------------------
 " Language: gitcommit
@@ -691,27 +649,27 @@ au FileType html set tabstop=2
 ""----------------------------------------------
 " Language: JavaScript
 " "----------------------------------------------
- au FileType javascript set expandtab
- au FileType javascript set shiftwidth=2
- au FileType javascript set softtabstop=2
- au FileType javascript set tabstop=2
- " vim-jsx
- let g:jsx_ext_required = 1
- let g:jsx_pragma_required = 1
+au FileType javascript set expandtab
+au FileType javascript set shiftwidth=2
+au FileType javascript set softtabstop=2
+au FileType javascript set tabstop=2
+" vim-jsx
+let g:jsx_ext_required = 1
+let g:jsx_pragma_required = 1
 
 " "----------------------------------------------
 " " Language: JSON
 " "----------------------------------------------
- au FileType json set expandtab
- au FileType json set shiftwidth=2
- au FileType json set softtabstop=2
- au FileType json set tabstop=2
+au FileType json set expandtab
+au FileType json set shiftwidth=2
+au FileType json set softtabstop=2
+au FileType json set tabstop=2
 
- " "----------------------------------------------
+" "----------------------------------------------
 " " Language: Rust
 " "----------------------------------------------
 
- let g:rust_clip_command = 'pbcopy'
+let g:rust_clip_command = 'pbcopy'
 let g:rustfmt_autosave = 1
 let g:racer_cmd = "<path-to-racer>/target/release/racer"
 let $RUST_SRC_PATH="<path-to-rust-srcdir>/src/"
@@ -722,10 +680,10 @@ nnoremap <leader>lcs :LanguageClientStart<CR>
 " let g:LanguageClient_autoStart = 1
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'go': ['go-langserver'] }
+\ 'python': ['pyls'],
+\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+\ 'javascript': ['javascript-typescript-stdio'],
+\ 'go': ['go-langserver'] }
 
 noremap <silent> H :call LanguageClient_textDocument_hover()<CR>
 noremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
@@ -733,61 +691,31 @@ noremap <silent> R :call LanguageClient_textDocument_rename()<CR>
 noremap <silent> S :call LanugageClient_textDocument_documentSymbol()<CR>
 " }}}
 " "----------------------------------------------
-" " Language: LeetCode
-" "----------------------------------------------
-" 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'
- let g:leetcode_solution_filetype="golang"
- let g:leetcode_username=$LEETCODE_USER
- let g:leetcode_password=$LEETCODE_PASSWORD
- nnoremap <leader>ll :LeetCodeList<cr>
- nnoremap <leader>lt :LeetCodeTest<cr>
- nnoremap <leader>ls :LeetCodeSubmit<cr>
- nnoremap <leader>li :LeetCodeSignIn<cr>
-" "----------------------------------------------
 " " Syntastic
 " "----------------------------------------------
- let g:syntastic_javascript_checkers = ['eslint']
- set statusline+=%#warningmsg#
- set statusline+=%{SyntasticStatuslineFlag()}
- set statusline+=%*
- let g:syntastic_always_populate_loc_list = 1
- let g:syntastic_auto_loc_list = 1
- let g:syntastic_check_on_open = 1
- let g:syntastic_quiet_messages = { "type": "style" }
- let g:syntastic_enable_perl_checker = 1
+let g:syntastic_javascript_checkers = ['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_quiet_messages = { "type": "style" }
+let g:syntastic_enable_perl_checker = 1
 "----------------------------------------------
 " " Dash
 " "----------------------------------------------
-   let g:dash_map = {
-        \ 'java' : ['android', 'java'],
-        \ 'go': 'go',
-        \ 'javascript':'js'
-        \ }
-    nmap <silent> <LocalLeader>d <Plug>DashSearch
-    nmap <silent> <LocalLeader>D <Plug>DashGlobalSearch
+let g:dash_map = {
+\ 'java' : ['android', 'java'],
+\ 'go': 'go',
+\ 'javascript':'js'
+\ }
+nmap <silent> <LocalLeader>d <Plug>DashSearch
+nmap <silent> <LocalLeader>D <Plug>DashlobalSearch
 
 " " vim-autoformat
 " "----------------------------------------------
- let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
-" "----------------------------------------------
-" " Ale and Revive
-" "----------------------------------------------
-call ale#linter#Define('go', {
-\   'name': 'revive',
-\   'output_stream': 'both',
-\   'executable': 'revive',
-\   'read_buffer': 0,
-\   'command': 'revive %t',
-\   'callback': 'ale#handlers#unix#HandleAsWarning',
-\})
-
-
-" " deoplete-tabnine
-call deoplete#custom#var('tabnine', {
-\ 'line_limit': 500,
-\ 'max_num_results': 20,
-\ })
-
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
 
 "" terraform
 " Syntastic Config
@@ -820,8 +748,6 @@ let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 let g:deoplete#enable_at_startup = 1
 
-
-
 " ===
 " === coc
 " ===
@@ -831,18 +757,18 @@ let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-emmet', 'coc-htm
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
+let col = col('.') - 1
+return !col || getline('.')[col - 1]	=~ '\s'
 endfunction
 inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<Tab>" :
-			\ coc#refresh()
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<Tab>" :
+\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -868,11 +794,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+if (index(['vim','help'], &filetype) >= 0)
+execute 'h '.expand('<cword>')
+else
+call CocAction('doHover')
+endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -886,11 +812,11 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+autocmd!
+" Setup formatexpr specified filetype(s).
+autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+" Update signature help on jump placeholder
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -943,7 +869,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Flutter
 " Enable Flutter menu
-call FlutterMenu()
+"call FlutterMenu()
 
 " Some of these key choices were arbitrary;
 " it's just an example.
