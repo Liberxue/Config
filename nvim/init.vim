@@ -1,5 +1,5 @@
 call plug#begin()
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdown
@@ -23,7 +23,7 @@ Plug 'sebdah/vim-delve'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-
+" Pulg 'rizzatti/dash.vim'
 " Auto Complete
 " Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -48,6 +48,7 @@ Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'scrooloose/syntastic'                    " jsx eslintrc
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
+Plug 'codota/tabnine-vim'
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
