@@ -60,11 +60,11 @@ call plug#end()
 "----------------------------------------------
 " eneral settings
 "----------------------------------------------"
-" Â∏∏ËßÑÊ®°Âºè‰∏ãÁî®Á©∫Ê†ºÈîÆÊù•ÂºÄÂÖ≥ÂÖâÊ†áË°åÊâÄÂú®ÊäòÂè†ÔºàÊ≥®ÔºözR Â±ïÂºÄÊâÄÊúâÊäòÂè†ÔºåzM ÂÖ≥Èó≠ÊâÄÊúâÊäòÂè†Ôºâ
+" 常规模式下用空格键来开关光标行所在折叠（注：zR 展开所有折叠，zM 关闭所有折叠）
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cS Ê∏ÖÈô§Ë°åÂ∞æÁ©∫Ê†º
+" 常规模式下输入 cS 清除行尾空格
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
-" " Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cM Ê∏ÖÈô§Ë°åÂ∞æ ^M Á¨¶Âè∑
+" " 常规模式下输入 cM 清除行尾 ^M 符号
 nmap cM :%s/\r$//g<CR>:noh<CR>
 
 set autoindent                    " take indent for new line from previous line
@@ -79,7 +79,7 @@ set cursorline                    " highlight the current line for the cursor
 set encoding=utf-8
 set expandtab                     " expands tabs to spaces
 set list                          " show trailing whitespace
-set listchars=tab:\|\ ,trail:‚ñ´
+set listchars=tab:\|\ ,trail:▫
 set nospell                       " disable spelling
 set noswapfile                    " disable swapfile usage
 set nowrap
@@ -392,10 +392,10 @@ nnoremap <leader>a :Ack!<space>
 " Plugin: neomake/neomake
 "----------------------------------------------
 " Configure signs.
-let g:neomake_error_sign   = {'text': '‚úñ', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {'text': '‚àÜ', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_message_sign = {'text': '‚û§', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign    = {'text': '‚Ñπ', 'texthl': 'NeomakeInfoSign'}
+let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 
 "----------------------------------------------
 " Plugin: scrooloose/
@@ -607,8 +607,8 @@ let g:neomake_go_gometalinter_maker = {
 \   '%W%f:%l::%tarning: %m'
 \ }
 " Error and warning signs.
-let g:ale_sign_error = '‚§´'
-let g:ale_sign_warning = '‚ö†'" Enable integration with airline.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'" Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 "----------------------------------------------
 " Language: gitcommit
