@@ -1,10 +1,12 @@
 FROM centos:7
 
+ARG jdkVersion="11"
+
 ENV MAVEN_VERSION=3.8.3 \
     MAVEN_HOME=/opt/apache-maven-${MAVEN_VERSION}
 
 RUN yum -y update && \
-    yum -y install java-11-openjdk-headless openssl epel-release wget which krb5-lib krb5-workstation&& \
+    yum -y install java-$jdkVersion-openjdk-headless openssl epel-release wget which && \
     curl -o /download/apache-maven-${MAVEN_VERSION}-bin.tar.gz http://apache.cs.utah.edu/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
     tar -zxf /download/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
     rm -rf /download/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
