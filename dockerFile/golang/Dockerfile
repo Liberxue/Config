@@ -23,7 +23,10 @@ RUN sed -i $SourceProxy /etc/apk/repositories && \
 
     curl -o ~/.config/nvim/init.vim https://raw.githubusercontent.com/Liberxue/Config/master/nvim/init.vim && \
 
-    alias vim=nvim
+    nvim -c "auto plugInstall" -c "PlugInstall" && \
+    
+    echo "alias vim=nvim" >> ~/.bashrc
+    
 
 
 
