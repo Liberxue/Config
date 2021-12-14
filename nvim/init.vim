@@ -33,7 +33,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':silent :oUpdateBinaries' }
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'rust-lang/rust.vim'                      " Rust support
 Plug 'racer-rust/vim-racer'                    " Rust plug support
 Plug 'vimwiki/vimwiki'
@@ -49,22 +49,30 @@ Plug 'scrooloose/syntastic'                    " jsx eslintrc
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 Plug 'codota/tabnine-vim'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} "https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
+
+Plug 'cespare/vim-toml' " rust
+Plug 'dense-analysis/ale' "rust
+
+
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ayu-theme/ayu-vim'
 Plug 'kaicataldo/material.vim'
 Plug 'rakr/vim-one'
+Plug 'hashivim/vim-terraform'
+
 call plug#end()
 
 "----------------------------------------------
 " eneral settings
 "----------------------------------------------"
-" 常规模式下用空格键来开关光标行所在折叠（注：zR 展开所有折叠，zM 关闭所有折叠）
+" Â∏∏ËßÑÊ®°Âºè‰∏ãÁî®Á©∫Ê†ºÈîÆÊù•ÂºÄÂÖ≥ÂÖâÊ†áË°åÊâÄÂú®ÊäòÂè†ÔºàÊ≥®ÔºözR Â±ïÂºÄÊâÄÊúâÊäòÂè†ÔºåzM ÂÖ≥Èó≠ÊâÄÊúâÊäòÂè†Ôºâ
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" 常规模式下输入 cS 清除行尾空格
+" Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cS Ê∏ÖÈô§Ë°åÂ∞æÁ©∫Ê†º
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
-" " 常规模式下输入 cM 清除行尾 ^M 符号
+" " Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cM Ê∏ÖÈô§Ë°åÂ∞æ ^M Á¨¶Âè∑
 nmap cM :%s/\r$//g<CR>:noh<CR>
 
 set autoindent                    " take indent for new line from previous line
@@ -79,7 +87,7 @@ set cursorline                    " highlight the current line for the cursor
 set encoding=utf-8
 set expandtab                     " expands tabs to spaces
 set list                          " show trailing whitespace
-set listchars=tab:\|\ ,trail:▫
+set listchars=tab:\|\ ,trail:‚ñ´
 set nospell                       " disable spelling
 set noswapfile                    " disable swapfile usage
 set nowrap
@@ -392,10 +400,10 @@ nnoremap <leader>a :Ack!<space>
 " Plugin: neomake/neomake
 "----------------------------------------------
 " Configure signs.
-let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+let g:neomake_error_sign   = {'text': '‚úñ', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '‚àÜ', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '‚û§', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign    = {'text': '‚Ñπ', 'texthl': 'NeomakeInfoSign'}
 
 "----------------------------------------------
 " Plugin: scrooloose/
@@ -607,8 +615,8 @@ let g:neomake_go_gometalinter_maker = {
 \   '%W%f:%l::%tarning: %m'
 \ }
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'" Enable integration with airline.
+let g:ale_sign_error = '‚§´'
+let g:ale_sign_warning = '‚ö†'" Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 "----------------------------------------------
 " Language: gitcommit
@@ -879,3 +887,39 @@ nnoremap <leader>fq :FlutterQuit<cr>
 nnoremap <leader>fr :FlutterHotReload<cr>
 nnoremap <leader>fR :FlutterHotRestart<cr>
 nnoremap <leader>fD :FlutterVisualDebug<cr>
+
+
+
+" rust ale config
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '‚úó'
+let g:ale_sign_warning = 'ÔÅ±'
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'rust': ['rustfmt'],
+\}
+inoremap <silent><expr><TAB>
+    \ pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+" rust key mappings
+nmap <silent> <F11> <Plug>(ale_previous_wrap)
+nmap <silent> <F23> <Plug>(ale_next_wrap)
+nmap <silent> <F12> :ALEGoToDefinition<CR>
+nmap <silent> <F24> :ALEFindReferences<CR>
+map <leader>s :Ag<space>
+"nmap <silent> <YOUR PREFERRED KEY HERE> :ALEGoToDefinition<CR>
+"nmap <silent> <YOUR PREFERRED KEY HERE> :ALEFindReferences<CR>
+"nmap <silent> <YOUR PREFERRED KEY HERE> <Plug>(ale_previous_wrap)
+"nmap <silent> <YOUR PREFERRED KEY HERE> <Plug>(ale_next_wrap)
+"
+" neovide
+let g:neovide_refresh_rate=140
+let g:neovide_transparency=0.8
+let g:neovide_no_idle=v:true
+let neovide_remember_window_size = v:true
+let g:neovide_cursor_vfx_mode = "torpedo"
