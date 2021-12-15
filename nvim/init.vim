@@ -1,5 +1,4 @@
 call plug#begin()
-" Plug 'itchyny/'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdown
@@ -52,7 +51,6 @@ Plug 'codota/tabnine-vim'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} "https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
 
 Plug 'cespare/vim-toml' " rust
-Plug 'dense-analysis/ale' "rust
 
 
 " Colorschemes
@@ -68,11 +66,11 @@ call plug#end()
 "----------------------------------------------
 " eneral settings
 "----------------------------------------------"
-" Â∏∏ËßÑÊ®°Âºè‰∏ãÁî®Á©∫Ê†ºÈîÆÊù•ÂºÄÂÖ≥ÂÖâÊ†áË°åÊâÄÂú®ÊäòÂè†ÔºàÊ≥®ÔºözR Â±ïÂºÄÊâÄÊúâÊäòÂè†ÔºåzM ÂÖ≥Èó≠ÊâÄÊúâÊäòÂè†Ôºâ
+" √Ç‚àè‚àè√ã√ü√ë√ä¬Æ¬∞√Ç¬∫√®‚Ä∞‚àè√£√Å√Æ¬Æ√Å¬©‚à´√ä‚Ä†¬∫√à√Æ√Ü√ä√π‚Ä¢√Ç¬∫√Ñ√Ç√ñ‚â•√Ç√ñ√¢√ä‚Ä†√°√ã¬∞√•√ä√¢√Ñ√Ç√∫¬Æ√ä√§√≤√Ç√®‚Ä†√î¬∫√†√ä‚â•¬Æ√î¬∫√∂zR √Ç¬±√Ø√Ç¬∫√Ñ√ä√¢√Ñ√ä√∫√¢√ä√§√≤√Ç√®‚Ä†√î¬∫√•zM √Ç√ñ‚â•√à√≥‚â†√ä√¢√Ñ√ä√∫√¢√ä√§√≤√Ç√®‚Ä†√î¬∫√¢
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cS Ê∏ÖÈô§Ë°åÂ∞æÁ©∫Ê†º
+" √Ç‚àè‚àè√ã√ü√ë√ä¬Æ¬∞√Ç¬∫√®‚Ä∞‚àè√£√ã√¶√¨√Ç√ñ‚Ä¢ cS √ä‚àè√ñ√à√¥¬ß√ã¬∞√•√Ç‚àû√¶√Å¬©‚à´√ä‚Ä†¬∫
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
-" " Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cM Ê∏ÖÈô§Ë°åÂ∞æ ^M Á¨¶Âè∑
+" " √Ç‚àè‚àè√ã√ü√ë√ä¬Æ¬∞√Ç¬∫√®‚Ä∞‚àè√£√ã√¶√¨√Ç√ñ‚Ä¢ cM √ä‚àè√ñ√à√¥¬ß√ã¬∞√•√Ç‚àû√¶ ^M √Å¬®¬∂√Ç√®‚àë
 nmap cM :%s/\r$//g<CR>:noh<CR>
 
 set autoindent                    " take indent for new line from previous line
@@ -400,10 +398,10 @@ nnoremap <leader>a :Ack!<space>
 " Plugin: neomake/neomake
 "----------------------------------------------
 " Configure signs.
-let g:neomake_error_sign   = {'text': '‚úñ', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {'text': '‚àÜ', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_message_sign = {'text': '‚û§', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign    = {'text': '‚Ñπ', 'texthl': 'NeomakeInfoSign'}
+let g:neomake_error_sign   = {'text': '‚Äö√∫√±', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '‚Äö√†√ú', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '‚Äö√ª¬ß', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign    = {'text': '‚Äö√ëœÄ', 'texthl': 'NeomakeInfoSign'}
 
 "----------------------------------------------
 " Plugin: scrooloose/
@@ -615,8 +613,8 @@ let g:neomake_go_gometalinter_maker = {
 \   '%W%f:%l::%tarning: %m'
 \ }
 " Error and warning signs.
-let g:ale_sign_error = '‚§´'
-let g:ale_sign_warning = '‚ö†'" Enable integration with airline.
+let g:ale_sign_error = '‚Äö¬ß¬¥'
+let g:ale_sign_warning = '‚Äö√∂‚Ä†'" Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 "----------------------------------------------
 " Language: gitcommit
@@ -889,7 +887,6 @@ nnoremap <leader>fR :FlutterHotRestart<cr>
 nnoremap <leader>fD :FlutterVisualDebug<cr>
 
 
-
 " rust ale config
 set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_enabled = 1
@@ -898,6 +895,21 @@ let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '‚úó'
 let g:ale_sign_warning = 'ÔÅ±'
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'rust': ['rustfmt'],
+\}
+inoremap <silent><expr><TAB>
+    \ pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" rust ale config
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '‚Äö√∫√≥'
+let g:ale_sign_warning = '√î√Ö¬±'
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'rust': ['rustfmt'],
