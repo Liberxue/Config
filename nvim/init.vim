@@ -46,6 +46,12 @@ Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'scrooloose/syntastic'                    " jsx eslintrc
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
+<<<<<<< HEAD
+=======
+Plug 'codota/tabnine-vim'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} "https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
+
+>>>>>>> fefd91035f9d0be11f330ff0f37292005f599174
 Plug 'cespare/vim-toml' " rust
 
 
@@ -62,11 +68,20 @@ call plug#end()
 "----------------------------------------------
 " eneral settings
 "----------------------------------------------"
+<<<<<<< HEAD
 "nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "" Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cS Ê∏ÖÈô§Ë°åÂ∞æÁ©∫Ê†º
 "nmap cS :%s/\s\+$//g<CR>:noh<CR>
 "" " Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cM Ê∏ÖÈô§Ë°åÂ∞æ ^M Á¨¶Âè∑
 "nmap cM :%s/\r$//g<CR>:noh<CR>
+=======
+" √Ç‚àè‚àè√ã√ü√ë√ä¬Æ¬∞√Ç¬∫√®‚Ä∞‚àè√£√Å√Æ¬Æ√Å¬©‚à´√ä‚Ä†¬∫√à√Æ√Ü√ä√π‚Ä¢√Ç¬∫√Ñ√Ç√ñ‚â•√Ç√ñ√¢√ä‚Ä†√°√ã¬∞√•√ä√¢√Ñ√Ç√∫¬Æ√ä√§√≤√Ç√®‚Ä†√î¬∫√†√ä‚â•¬Æ√î¬∫√∂zR √Ç¬±√Ø√Ç¬∫√Ñ√ä√¢√Ñ√ä√∫√¢√ä√§√≤√Ç√®‚Ä†√î¬∫√•zM √Ç√ñ‚â•√à√≥‚â†√ä√¢√Ñ√ä√∫√¢√ä√§√≤√Ç√®‚Ä†√î¬∫√¢
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" √Ç‚àè‚àè√ã√ü√ë√ä¬Æ¬∞√Ç¬∫√®‚Ä∞‚àè√£√ã√¶√¨√Ç√ñ‚Ä¢ cS √ä‚àè√ñ√à√¥¬ß√ã¬∞√•√Ç‚àû√¶√Å¬©‚à´√ä‚Ä†¬∫
+nmap cS :%s/\s\+$//g<CR>:noh<CR>
+" " √Ç‚àè‚àè√ã√ü√ë√ä¬Æ¬∞√Ç¬∫√®‚Ä∞‚àè√£√ã√¶√¨√Ç√ñ‚Ä¢ cM √ä‚àè√ñ√à√¥¬ß√ã¬∞√•√Ç‚àû√¶ ^M √Å¬®¬∂√Ç√®‚àë
+nmap cM :%s/\r$//g<CR>:noh<CR>
+>>>>>>> fefd91035f9d0be11f330ff0f37292005f599174
 
 set autoindent                    " take indent for new line from previous line
 set smartindent                   " enable smart indentation
@@ -80,7 +95,7 @@ set cursorline                    " highlight the current line for the cursor
 set encoding=utf-8
 set expandtab                     " expands tabs to spaces
 set list                          " show trailing whitespace
-set listchars=tab:\|\ ,trail:▫
+set listchars=tab:\|\ ,trail:‚ñ´
 set nospell                       " disable spelling
 set noswapfile                    " disable swapfile usage
 set nowrap
@@ -387,10 +402,42 @@ nnoremap <leader>w :Bclose<cr>
 " Plugin: neomake/neomake
 "----------------------------------------------
 " Configure signs.
+<<<<<<< HEAD
 let g:neomake_error_sign   = {'text': '‚úñ', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {'text': '‚àÜ', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_message_sign = {'text': '‚û§', 'texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign    = {'text': '‚Ñπ', 'texthl': 'NeomakeInfoSign'}
+=======
+let g:neomake_error_sign   = {'text': '‚Äö√∫√±', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '‚Äö√†√ú', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '‚Äö√ª¬ß', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign    = {'text': '‚Äö√ëœÄ', 'texthl': 'NeomakeInfoSign'}
+
+"----------------------------------------------
+" Plugin: scrooloose/
+"----------------------------------------------
+nnoremap <leader>d :NERDTreeToggle<cr>
+nnoremap <F2> :NERDTreeToggle<cr>
+
+" Files to ignore
+let NERDTreeIgnore = [
+\ '\~$',
+\ '\.pyc$',
+\ '^\.DS_Store$',
+\ '^node_modules$',
+\ '^.ropeproject$',
+\ '^**pycache**$'
+\]
+
+" Close vim if NERDTree is the only opened window.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Show hidden files by default.
+let NERDTreeShowHidden = 1
+
+" Allow NERDTree to change session root.
+let g:NERDTreeChDirMode = 2
+>>>>>>> fefd91035f9d0be11f330ff0f37292005f599174
 
 "----------------------------------------------
 " Plugin: sebdah/vim-delve
@@ -580,8 +627,13 @@ let g:neomake_go_gometalinter_maker = {
 \   '%W%f:%l::%tarning: %m'
 \ }
 " Error and warning signs.
+<<<<<<< HEAD
 let g:ale_sign_error = '‚§´'
 let g:ale_sign_warning = '‚ö†'" Enable integration with airline.
+=======
+let g:ale_sign_error = '‚Äö¬ß¬¥'
+let g:ale_sign_warning = '‚Äö√∂‚Ä†'" Enable integration with airline.
+>>>>>>> fefd91035f9d0be11f330ff0f37292005f599174
 let g:airline#extensions#ale#enabled = 1
 "----------------------------------------------
 " Language: gitcommit
@@ -860,8 +912,13 @@ let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
+<<<<<<< HEAD
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = ''
+=======
+let g:ale_sign_error = '‚úó'
+let g:ale_sign_warning = 'ÔÅ±'
+>>>>>>> fefd91035f9d0be11f330ff0f37292005f599174
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'rust': ['rustfmt'],
@@ -875,8 +932,13 @@ let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
+<<<<<<< HEAD
 let g:ale_sign_error = '‚úó'
 let g:ale_sign_warning = 'ÔÅ±'
+=======
+let g:ale_sign_error = '‚Äö√∫√≥'
+let g:ale_sign_warning = '√î√Ö¬±'
+>>>>>>> fefd91035f9d0be11f330ff0f37292005f599174
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'rust': ['rustfmt'],
@@ -896,6 +958,7 @@ map <leader>s :Ag<space>
 "nmap <silent> <YOUR PREFERRED KEY HERE> <Plug>(ale_previous_wrap)
 "nmap <silent> <YOUR PREFERRED KEY HERE> <Plug>(ale_next_wrap)
 "
+<<<<<<< HEAD
 
 " markdown
 nmap <C-s> <Plug>MarkdownPreview
@@ -918,3 +981,11 @@ let NERDTreeShowHidden = 1
 
 " Allow NERDTree to change session root.
 let g:NERDTreeChDirMode = 2
+=======
+" neovide
+let g:neovide_refresh_rate=140
+let g:neovide_transparency=0.8
+let g:neovide_no_idle=v:true
+let neovide_remember_window_size = v:true
+let g:neovide_cursor_vfx_mode = "torpedo"
+>>>>>>> fefd91035f9d0be11f330ff0f37292005f599174
