@@ -1,5 +1,4 @@
 call plug#begin()
-" Plug 'itchyny/'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdown
@@ -8,32 +7,32 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'  " Default snippets for many languages
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-signify'
-Plug 'mileszs/ack.vim'
 Plug 'neomake/neomake'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/'
 Plug 'sebdah/vim-delve'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-" Pulg 'rizzatti/dash.vim'
+Plug 'preservim/nerdtree'
+Plug 'git://git.wincent.com/command-t.git'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'ryanoasis/vim-devicons' "icon
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} "https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
 " Auto Complete
 " Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Language support
-" o support
+Plug 'uarun/vim-protobuf'
 Plug 'fatih/vim-go', { 'do': ':silent :oUpdateBinaries' }
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'rust-lang/rust.vim'                      " Rust support
 Plug 'racer-rust/vim-racer'                    " Rust plug support
 Plug 'vimwiki/vimwiki'
@@ -43,29 +42,31 @@ Plug 'moll/vim-node'                            "node support
 Plug 'tpope/vim-jdaddy' "Json text objects
 Plug 'tweekmonster/braceless.vim' " text objects and more for Python and other indented code
 Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
-Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
 Plug 'scrooloose/syntastic'                    " jsx eslintrc
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
-Plug 'codota/tabnine-vim'
+Plug 'cespare/vim-toml' " rust
+
+
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ayu-theme/ayu-vim'
 Plug 'kaicataldo/material.vim'
 Plug 'rakr/vim-one'
+Plug 'hashivim/vim-terraform'
+
 call plug#end()
 
 "----------------------------------------------
 " eneral settings
 "----------------------------------------------"
-" 常规模式下用空格键来开关光标行所在折叠（注：zR 展开所有折叠，zM 关闭所有折叠）
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" 常规模式下输入 cS 清除行尾空格
-nmap cS :%s/\s\+$//g<CR>:noh<CR>
-" " 常规模式下输入 cM 清除行尾 ^M 符号
-nmap cM :%s/\r$//g<CR>:noh<CR>
+"nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+"" Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cS Ê∏ÖÈô§Ë°åÂ∞æÁ©∫Ê†º
+"nmap cS :%s/\s\+$//g<CR>:noh<CR>
+"" " Â∏∏ËßÑÊ®°Âºè‰∏ãËæìÂÖ• cM Ê∏ÖÈô§Ë°åÂ∞æ ^M Á¨¶Âè∑
+"nmap cM :%s/\r$//g<CR>:noh<CR>
 
 set autoindent                    " take indent for new line from previous line
 set smartindent                   " enable smart indentation
@@ -73,7 +74,7 @@ set autoread                      " reload file if the file changes on the disk
 set autowrite                     " write when switching buffers
 set autowriteall                  " write on :quit
 set clipboard=unnamedplus
-set colorcolumn=81                " highlight the 80th column as an indicator
+set colorcolumn=80                " highlight the 80th column as an indicator
 set completeopt-=preview          " remove the horrendous preview window
 set cursorline                    " highlight the current line for the cursor
 set encoding=utf-8
@@ -98,6 +99,10 @@ set cmdheight=2                   " Better display for messages
 set updatetime=300                " You will have bad experience for diagnostic messages when it's default 4000.
 set shortmess+=c                  " don't give |ins-completion-menu| messages.
 set signcolumn=yes                " always show signcolumns
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set paste "set nopaste
+
 " Enable mouse if possible
 if has('mouse')
 set mouse=a
@@ -189,10 +194,10 @@ nnoremap N Nzzzv
 " Navigation
 "----------------------------------------------
 "Disable arrow keys
-"noremap <Up> <NOP>
-"noremap <Down> <NOP>
-"noremap <Left> <NOP>
-"noremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Move between buffers with Shift + arrow key...
 nnoremap <S-Left> :bprevious<cr>
@@ -215,6 +220,7 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
 
 "----------------------------------------------
 " Splits
@@ -328,11 +334,6 @@ let g:calendar_week_number = 1                " Show week numbers
 let g:calendar_view = "days"                  " Set days as the default view
 
 "----------------------------------------------
-" Plugin: 'junegunn/fzf.vim'
-"----------------------------------------------
-nnoremap <c-p> :FZF<cr>
-
-"----------------------------------------------
 " Plugin: 'majutsushi/tagbar'
 "----------------------------------------------
 " Add shortcut for toggling the tag bar
@@ -383,44 +384,13 @@ let g:instant_markdown_autoscroll = 0
 nnoremap <leader>w :Bclose<cr>
 
 "----------------------------------------------
-" Plugin: mileszs/ack.vim
-"----------------------------------------------
-" Open ack
-nnoremap <leader>a :Ack!<space>
-
-"----------------------------------------------
 " Plugin: neomake/neomake
 "----------------------------------------------
 " Configure signs.
-let g:neomake_error_sign   = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_warning_sign = {'text': '∆', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign    = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
-
-"----------------------------------------------
-" Plugin: scrooloose/
-"----------------------------------------------
-nnoremap <leader>d :NERDTreeToggle<cr>
-nnoremap <F2> :NERDTreeToggle<cr>
-
-" Files to ignore
-let NERDTreeIgnore = [
-\ '\~$',
-\ '\.pyc$',
-\ '^\.DS_Store$',
-\ '^node_modules$',
-\ '^.ropeproject$',
-\ '^**pycache**$'
-\]
-
-" Close vim if NERDTree is the only opened window.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" Show hidden files by default.
-let NERDTreeShowHidden = 1
-
-" Allow NERDTree to change session root.
-let g:NERDTreeChDirMode = 2
+let g:neomake_error_sign   = {'text': '‚úñ', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '‚àÜ', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '‚û§', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign    = {'text': '‚Ñπ', 'texthl': 'NeomakeInfoSign'}
 
 "----------------------------------------------
 " Plugin: sebdah/vim-delve
@@ -465,8 +435,8 @@ au FileType vimwiki set tabstop=2
 "----------------------------------------------
 " Plugin: 'terryma/vim-multiple-cursors'
 "----------------------------------------------
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_skip_key='<C-b>'
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_skip_key='<C-b>'
 
 "----------------------------------------------
 " Plugin: zchee/deoplete-go
@@ -491,7 +461,7 @@ let g:python3_host_skip_check = 1
 " Run deoplete.nvim automatically
 let g:deoplete#enable_at_startup = 1
 " deoplete-go settings
-let g:deoplete#sources#go#gocode_binary = $OPATH.'/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 
 " Available values are [package, func, type, var, const]. If you did not include any value, it will always be hidden in the completion list.
 
@@ -509,13 +479,16 @@ let g:deoplete#sources#go#cgo	=1
 let g:deoplete#sources#go#goos=1
 
 "----------------------------------------------
-" Language: olang
+" Language: golang
 "----------------------------------------------
 au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
-
+au FileType go set shiftwidth=2
+au FileType go set softtabstop=2
+au FileType go set tabstop=2
+let g:go_debug_windows = {
+      \ 'vars':       'rightbelow 60vnew',
+	        \ 'stack':      'rightbelow 10new',
+			\ }
 " Mappings
 au FileType go nmap <F8> :oMetaLinter<cr>
 au FileType go nmap <F9> :oCoverageToggle -short<cr>
@@ -607,8 +580,8 @@ let g:neomake_go_gometalinter_maker = {
 \   '%W%f:%l::%tarning: %m'
 \ }
 " Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'" Enable integration with airline.
+let g:ale_sign_error = '‚§´'
+let g:ale_sign_warning = '‚ö†'" Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 "----------------------------------------------
 " Language: gitcommit
@@ -879,3 +852,69 @@ nnoremap <leader>fq :FlutterQuit<cr>
 nnoremap <leader>fr :FlutterHotReload<cr>
 nnoremap <leader>fR :FlutterHotRestart<cr>
 nnoremap <leader>fD :FlutterVisualDebug<cr>
+
+
+" rust ale config
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'rust': ['rustfmt'],
+\}
+inoremap <silent><expr><TAB>
+    \ pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" rust ale config
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '‚úó'
+let g:ale_sign_warning = 'ÔÅ±'
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'rust': ['rustfmt'],
+\}
+inoremap <silent><expr><TAB>
+    \ pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+" rust key mappings
+nmap <silent> <F11> <Plug>(ale_previous_wrap)
+nmap <silent> <F23> <Plug>(ale_next_wrap)
+nmap <silent> <F12> :ALEGoToDefinition<CR>
+nmap <silent> <F24> :ALEFindReferences<CR>
+map <leader>s :Ag<space>
+"nmap <silent> <YOUR PREFERRED KEY HERE> :ALEGoToDefinition<CR>
+"nmap <silent> <YOUR PREFERRED KEY HERE> :ALEFindReferences<CR>
+"nmap <silent> <YOUR PREFERRED KEY HERE> <Plug>(ale_previous_wrap)
+"nmap <silent> <YOUR PREFERRED KEY HERE> <Plug>(ale_next_wrap)
+"
+
+" markdown
+nmap <C-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-p> <Plug>MarkdownPreviewToggle
+
+
+"----------------------------------------------
+" Plugin: nerdtree/
+"----------------------------------------------
+nnoremap <F2> :NERDTreeToggle<cr>
+
+"" Files to ignore
+
+" Close vim if NERDTree is the only opened window.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Show hidden files by default.
+let NERDTreeShowHidden = 1
+
+" Allow NERDTree to change session root.
+let g:NERDTreeChDirMode = 2
